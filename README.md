@@ -3,17 +3,21 @@
 ![Python](https://img.shields.io/badge/Python-3.9-blue) ![Docker](https://img.shields.io/badge/Docker-Enabled-blue) ![Status](https://img.shields.io/badge/Status-Completed-green)
 
 ## Project Overview
-Modeled after production workflows experienced at **Zhilan Ecological Technology**, EcoStream is an end-to-end data pipeline designed to ingest environmental telemetry and detect sensor anomalies in real-time.
+**Data Source:** [Beijing Multi-Site Air Quality Data (UCI Repository)](https://archive.ics.uci.edu/dataset/501/beijing+multi+site+air+quality+data)
 
-Using the **Beijing Multi-Site Air Quality dataset**, this project simulates a scenario where IoT sensors monitor critical air pollutants. The system ingests raw logs into a SQL data lake, performs cleaning, and deploys an **Isolation Forest** machine learning model to flag equipment malfunctions or extreme environmental events.
+Inspired by the **high-reliability data pipelines** developed at **Zhilan Ecological Technology**, EcoStream is an end-to-end data system designed to ingest environmental telemetry and detect sensor anomalies in real-time.
+
+Using the Beijing Multi-Site Air Quality dataset, this project simulates a scenario where IoT sensors monitor critical air pollutants. The system ingests raw logs into a SQL data lake, performs cleaning, and deploys an **Isolation Forest** machine learning model to flag equipment malfunctions or extreme environmental events.
 
 ## Key Features
 * **ETL Pipeline:** Automated ingestion of raw CSV telemetry into a structured SQLite database using Pandas.
 * **Unsupervised Learning:** Implemented `IsolationForest` (Scikit-Learn) to detect multivariate anomalies without labeled data, mimicking real-world "cold start" monitoring scenarios.
 * **Reproducibility:** Fully containerized environment using Docker to ensure consistent execution across platforms.
 
-## Data Analysis
-We identified strong correlations between PM2.5 and PM10, as well as distinct seasonal pollution spikes consistent with winter heating cycles.
+## Data Analysis & Strategy
+* **Correlation Insights:** Identified strong multi-collinearity between PM2.5 and PM10, guiding feature selection to reduce model noise.
+* **Model Selection:** Selected `IsolationForest` over One-Class SVM for its efficiency in handling high-dimensional sensor data without requiring extensive normalization.
+* **Seasonal Trends:** Detected distinct pollution spikes consistent with winter heating cycles, validated against historical meteorological data.
 
 ![Correlation Heatmap](correlation_heatmap.png)
 *(Figure 1: Feature Correlation Matrix showing sensor dependencies)*
