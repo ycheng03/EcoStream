@@ -28,12 +28,25 @@ docker build -t ecostream .
 docker run ecostream
 ```
 
+## Notebook Demo (Admissions-Friendly)
+
+For reviewers who prefer an interactive walkthrough, see `notebooks/pipeline_demo.ipynb`, which demonstrates:
+
+- End-to-end ingestion and preprocessing
+- Isolation Forest anomaly detection
+- Diagnostic visualizations
+- Clean, readable outputs suitable for review
+
+This notebook mirrors the production pipeline logic in a self-contained format.
+
 ## Project Structure
 ```text
 /EcoStream
 │
 ├── data/                  # Contains raw CSV and processed SQLite database
-├── notebooks/             # Jupyter Notebooks for EDA and visualization
+├── notebooks/
+│   ├── pipeline_demo.ipynb # **START HERE**: End-to-end modular pipeline walkthrough
+│   └── analysis.ipynb      # Initial EDA and visualization experiments
 ├── src/
 │   ├── ingest.py          # ETL script: CSV -> SQL
 │   └── model.py           # ML script: Train Isolation Forest
